@@ -6,12 +6,6 @@ def call(Map config = [:]) {
                     ]
     def emailDataJson = groovy.json.JsonOutput.toJson(emailData)
 
-    sh """
-        curl -X POST http://host.docker.internal:8000/send-email/ \
-        -H 'Content-Type: application/json' \
-        -d '${emailDataJson}'
-    """
-
     def apiResponse = sh(
         script: """
             curl -X POST http://host.docker.internal:8000/send-email/ \
@@ -21,7 +15,8 @@ def call(Map config = [:]) {
         returnStdout: true
         ).trim()
     
-    
+    echo "apiResponse: ${apiResponse}" 
+
     def isSuccess = true
     if (apiResponse != "200") {
         isSuccess = false
