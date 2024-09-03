@@ -14,13 +14,4 @@ def call(Map config = [:]) {
         """,
         returnStdout: true
         ).trim()
-    
-    echo "apiResponse: ${apiResponse}" 
-
-    def isSuccess = true
-    if (apiResponse != "200") {
-        isSuccess = false
-    }
-
-    return isSuccess
 }
