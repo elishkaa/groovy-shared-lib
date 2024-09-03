@@ -1,8 +1,8 @@
 def call(Map config = [:]) {
     def emailData = [
-                        email: ${config.TO},
-                        subject: ${config.SUBJECT},
-                        message: ${config.MESSAGE}
+                        email: "${config.TO}",
+                        subject: "${config.SUBJECT}",
+                        message: "${config.MESSAGE}"
                     ]
                     def emailDataJson = groovy.json.JsonOutput.toJson(emailData)
 
